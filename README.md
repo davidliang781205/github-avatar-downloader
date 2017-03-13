@@ -1,4 +1,4 @@
-tHub Avatar Downloader
+## GitHub Avatar Downloader
 
 ## Problem Statement
 
