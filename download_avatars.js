@@ -8,17 +8,14 @@ const BASE_URL = 'https://'+ process.env.GITHUB_USER + ':' + process.env.GITHUB_
 
 
 console.log('Welcome to the GitHub Avatar Downloader!');
+console.log(BASE_URL);
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
 
   // Check if any of the parameter is empty
   if (!repoOwner || !repoName){
-
-
-    cb(new Error('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>'));
-
-    // console.log('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>');
+    console.log('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>');
   } else {
     var options = {
       url: BASE_URL + repoOwner + '/' + repoName + '/contributors',
@@ -50,7 +47,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 
 
-function downloadImageByURL(err, url, filePath) {
+function downloadImageByURL(url, filePath) {
   request.get(url)
       .on('error', function (err) {
         throw err;
