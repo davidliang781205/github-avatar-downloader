@@ -1,5 +1,5 @@
-var request = require('request');
-var fs = require('fs');
+const request = require('request');
+const fs = require('fs');
 require('dotenv').config();
 
 
@@ -15,7 +15,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   if (!repoOwner || !repoName){
     return cb(new Error('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>'));
   } else {
-    var options = {
+    const options = {
       url: BASE_URL + repoOwner + '/' + repoName + '/contributors',
       headers: {
         'User-Agent': 'GitHub Avatar Downloader - Student Project'
@@ -32,7 +32,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
       if (o && o.length){
         o.forEach((obj) => {
           // Build the filePath with login name
-          var filePath = 'avatars/' + obj.login + '.jpg';
+          let filePath = 'avatars/' + obj.login + '.jpg';
           cb(null, obj.avatar_url, filePath);
         });
       } else {
