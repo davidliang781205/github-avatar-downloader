@@ -6,9 +6,7 @@ require('dotenv').config();
 const BASE_URL = 'https://'+ process.env.GITHUB_USER + ':' + process.env.GITHUB_TOKEN + '@api.github.com/repos/';
 
 
-
 console.log('Welcome to the GitHub Avatar Downloader!');
-console.log(BASE_URL);
 
 
 function getRepoContributors(repoOwner, repoName, cb) {
