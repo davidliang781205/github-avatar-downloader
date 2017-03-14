@@ -1,0 +1,24 @@
+{
+  "name": "github-avatar-downloader",
+  "version": "1.0.0",
+  "description": "## Problem Statement",
+  "main": "download_avatars.js",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidliang781205/github-avatar-downloader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidliang781205/github-avatar-downloader/issues"
+  },
+  "homepage": "https://github.com/davidliang781205/github-avatar-downloader#readme"
+}
