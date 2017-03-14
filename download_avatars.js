@@ -15,7 +15,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
   // Check if any of the parameter is empty
   if (!repoOwner || !repoName){
-    console.log('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>');
+    return cb(new Error('Please supply correct repoOwner and repoName.\nnode download_avatars.js <owner> <repo>'));
   } else {
     var options = {
       url: BASE_URL + repoOwner + '/' + repoName + '/contributors',
@@ -25,7 +25,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
     };
 
     request(options, function(err, response, body) {
-      if (err) throw err;
+      if (err) return cb(err);
 
       // Parsing output to Object
       let o = JSON.parse(body);
@@ -35,10 +35,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
         o.forEach((obj) => {
           // Build the filePath with login name
           var filePath = 'avatars/' + obj.login + '.jpg';
-          cb(obj.avatar_url, filePath);
+          cb(null, obj.avatar_url, filePath);
         });
       } else {
-        console.log('No data in this repo.');
+        cb(new Error('No data in this repo.'));
       }
 
     });
@@ -61,7 +61,21 @@ function downloadImageByURL(url, filePath) {
 
 
 
-getRepoContributors(process.argv[2], process.argv[3], downloadImageByURL);
+
+
+
+// Callback function to take errors
+getRepoContributors(process.argv[2], process.argv[3], function(err, url, filePath) {
+  if(err) {
+    console.log(err.message)
+    return;
+  }
+
+  // Everythin is ok!
+  downloadImageByURL(url, filePath);
+
+
+});
 
 
 
